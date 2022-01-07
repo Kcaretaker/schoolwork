@@ -9,7 +9,7 @@
 前端展示页面在workspace下的vue-sport-master文件下
 	实现实时数据展示
 	查询、删除、添加产品
-
+		npm install vue-cli
 监听数据spring boot在workspace 下Java -sport-master下
 	连接时间设置为100分钟后断开
 	数据库使用sql语句   root  没有密码
