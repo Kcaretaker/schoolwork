@@ -1,0 +1,6 @@
+{
+	"appId": "com.example.app",
+	"appName": "iottest",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

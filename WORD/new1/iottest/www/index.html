@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>传感器采集页面</h3>
+    <p id="tempsensor">初始状态</p>
+    <script>
+
+        var myTempData ={
+            state: 0
+        };
+
+        //const plightSensor = document.querySelector('#lightsensor');
+        const ptempSensor = document.querySelector('#tempsensor');
+
+        let idx = 0;
+
+          function TemponSuccess(values) {
+             myTempData.state = values[0];
+             ptempSensor.innerHTML = idx + " 室温: " + values[0];
+          };
+
+          function TemponError(error) {
+              console.log(error)
+              throw error;
+          };
+    
+          document.addEventListener("deviceready", function () {
+              
+            sensors.enableSensor("AMBIENT_TEMPERATURE");
+
+            setInterval(function(){
+              sensors.getState(TemponSuccess, TemponError);
+              idx++;
+            }, 1000);
+            
+          }, false);
+          var data = {
+            temp: myTempData.state
+        }
+        function visit()
+        {
+            console.log("asdasd");
+            $.ajax({
+            url: "Plans",
+            method: 'POST',
+            dataType:'json',
+            contentType: "application/json; charset=utf-8",
+            data:JSON.stringify(data),
+            success: function(res) {
+            console.log(typeof(res) === "object");
+                },
+            });
+        }setTimeout("visit",1000);
+    </script>
+    
+</body>
+</html>
